@@ -156,7 +156,11 @@ public class BST<K extends Comparable<K>, V>
     {
         if(root.left == null)
         {
-            return root.right;
+            Node rightNode = root.right;
+            root.right = null;
+            size--;
+            return rightNode;
+
         }
 
         root.left = deleteMin(root.left);

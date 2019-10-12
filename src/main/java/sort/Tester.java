@@ -17,16 +17,32 @@ public class Tester
         ShellSort<Integer> sorter = new ShellSort<>();
         Integer[] data = generateArray(10, 100);
         Long start = System.currentTimeMillis();
-        sorter.sort_raw(data);
+        sorter.sort(data);
         assertIsSorted(data);
         Long end = System.currentTimeMillis();
         System.out.println(sorter.getName() + ": " + (end - start)/1000.0 + " s");
     }
 
     @Test
-    public void testSelectionSort()
+    public void testMergeSortBU()
     {
-        testSort(new SelectionSort<Integer>());
+        MergeSort<Integer> sorter = new MergeSort<>();
+        Integer[] data = generateArray(1000, 100);
+        Long start = System.currentTimeMillis();
+        sorter.sortBottomUp(data);
+        assertIsSorted(data);
+        Long end = System.currentTimeMillis();
+        System.out.println(sorter.getName() + ": " + (end - start)/1000.0 + " s");
+    }
+
+    @Test
+    public void testSort()
+    {
+        //testSort(new SelectionSort<Integer>());
+        //testSort(new ShellSort());
+//        testSort(new MergeSort());
+        testSort(new QuickSort());
+
     }
 
 
@@ -86,6 +102,25 @@ public class Tester
         return data;
     }
 
+
+    @Test
+    public void basicTest()
+    {
+        int i = 0 , j = 1;
+        i += j + j;
+        System.out.println(i);
+    }
+
+    @Test
+    public void testRandom()
+    {
+        Random r = new Random();
+        int l = 3;
+        int r1 =5;
+        for (int i = 0; i < 100; i++) {
+            System.out.println(r.nextInt(r1-l) + l);
+        }
+    }
 
     private Integer[] generateSortedArray(int length)
     {
